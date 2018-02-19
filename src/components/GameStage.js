@@ -83,9 +83,10 @@ export class GameStage extends React.Component {
     getItemLaunchers() {
         /* Returns a list of Square Launchers for each item in 'items'
         */
-        return [...Object.values(this.state.items)].map(item => {
+        return [...Object.values(this.state.items)].map((item, index) => {
             return (
                 <SquareLauncher
+                    key={index}
                     vw={item.vw}
                     vh={item.vh}
                     numberOfSquaresToLaunch={this.scoreItem(item)}
@@ -100,7 +101,6 @@ export class GameStage extends React.Component {
             Changes indexCurrentlyEditing to the previous length of items
             Takes this opportunity to have the input Component report its height in px
         */
-        console.log('Submitted', this)
         const newIndex = Object.keys(this.state.items).length
         const inputProportionOfWindow = inputDivHeight / window.innerHeight
         const newItems = {
@@ -117,7 +117,6 @@ export class GameStage extends React.Component {
     }
 
     render() {
-        console.log('GameStage', this)
         return (
             <div className="game-stage" style={{ overflow: 'hidden' }}>
                 <MenuOverlay

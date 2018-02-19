@@ -75,7 +75,7 @@ export class MenuOverlay extends React.Component {
         for (let [index, item] of Object.entries(this.props.items)) {
             if (!item.title) continue
             itemDivs.push(
-                <GratitudeItem>
+                <GratitudeItem key={index}>
                     I'm grateful for {item.title} because {item.why}
                 </GratitudeItem>
             )

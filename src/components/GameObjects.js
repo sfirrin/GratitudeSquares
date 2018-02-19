@@ -114,7 +114,6 @@ export class SquareLauncher extends React.Component {
     }
 
     render() {
-        console.log(this)
         return (
             <div className="square-launcher">
                 <LauncherLabel
