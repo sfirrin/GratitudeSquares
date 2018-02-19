@@ -3,7 +3,6 @@ import React from 'react'
 import styled, { css, keyframes } from 'styled-components'
 import chroma from 'chroma-js'
 
-
 const INPUT_BACKGROUND_ALPHA = 0.4
 
 const inputSlide = keyframes`
@@ -29,7 +28,8 @@ export const GratitudeEntryTitleStyle = css`
 `
 
 const secondaryInputGray = 180
-function getRandomColor() {
+
+export function getRandomColor() {
     return chroma
         .random()
         .saturate(2)
@@ -48,7 +48,9 @@ const Input = styled.input`
     ${GratitudeEntryTitleStyle};
 `
 
-const WhyInput = Input.extend`flex-grow: 300;`
+const WhyInput = Input.extend`
+    flex-grow: 300;
+`
 
 const Form = styled.form``
 
@@ -78,9 +80,13 @@ const InputContainer = styled.div`
     margin-top: 5px;
 `
 
-const FirstRowContainer = InputContainer.extend`flex-grow: 2;`
+const FirstRowContainer = InputContainer.extend`
+    flex-grow: 2;
+`
 
-const SecondRowContainer = InputContainer.extend`flex-grow: 3;`
+const SecondRowContainer = InputContainer.extend`
+    flex-grow: 3;
+`
 
 // The rows that label-
 
@@ -139,7 +145,8 @@ export class JournalInput extends React.Component {
                                     this.handleItemEdit(
                                         'title',
                                         event.target.value
-                                    )}
+                                    )
+                                }
                                 autoFocus={true}
                                 innerRef={element => {
                                     this.titleInputElement = element
@@ -162,7 +169,8 @@ export class JournalInput extends React.Component {
                                     this.handleItemEdit(
                                         'why',
                                         event.target.value
-                                    )}
+                                    )
+                                }
                                 backgroundColor={this.state.color
                                     .alpha(INPUT_BACKGROUND_ALPHA)
                                     .css()}

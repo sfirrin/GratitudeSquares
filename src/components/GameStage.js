@@ -1,6 +1,7 @@
 import React from 'react'
 import { SquareComponent, SquareLauncher } from './GameObjects'
 import { JournalInput } from './JournalInput'
+import { MenuOverlay } from './MenuOverlay'
 
 function makeEmptyJournalEntry(maxVh = 70) {
     return {
@@ -25,7 +26,8 @@ export class GameStage extends React.Component {
                 0: makeEmptyJournalEntry(25)
             },
             indexCurrentlyEditing: 0,
-            inputHeight: 230
+            inputHeight: 230,
+            thresholdReached: false
         }
         this.handleItemEdit = this.handleItemEdit.bind(this)
         this.handleSubmit = this.handleSubmit.bind(this)
@@ -98,7 +100,7 @@ export class GameStage extends React.Component {
             Changes indexCurrentlyEditing to the previous length of items
             Takes this opportunity to have the input Component report its height in px
         */
-        console.log('Submitted with height + ' + inputDivHeight)
+        console.log('Submitted', this)
         const newIndex = Object.keys(this.state.items).length
         const inputProportionOfWindow = inputDivHeight / window.innerHeight
         const newItems = {
@@ -107,13 +109,21 @@ export class GameStage extends React.Component {
                 (1 - inputProportionOfWindow) * 90
             )
         }
-        this.setState({ items: newItems, indexCurrentlyEditing: newIndex })
+        this.setState({
+            items: newItems,
+            indexCurrentlyEditing: newIndex,
+            thresholdReached: newIndex >= 3
+        })
     }
 
     render() {
         console.log('GameStage', this)
         return (
             <div className="game-stage" style={{ overflow: 'hidden' }}>
+                <MenuOverlay
+                    items={this.state.items}
+                    thresholdReached={this.state.thresholdReached}
+                />
                 {this.getItemLaunchers()}
                 <div
                     className="input-container"
