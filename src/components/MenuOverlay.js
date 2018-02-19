@@ -11,7 +11,7 @@ const MenuOverlayContainer = styled.div`
     right: 0;
     height: 25%;
     background-color: #eeeeee;
-    opacity: ${props => (props.active ? 0.9 : 0)};
+    opacity: ${props => (props.active ? 1 : 0)};
     transition: opacity ease-in-out 0.3s;
     z-index: 5;
 
@@ -23,11 +23,11 @@ const MenuOverlayContainer = styled.div`
 const Menu = styled.div`
     margin: 0 auto;
     width: 900px;
-    max-width: 90vw;
+    max-width: 80vw;
     height: 900px;
     max-height: 90vh;
-    background-color: ${getRandomColor()};
-    opacity: 0.6;
+    background-color: ${getRandomColor(0.6).css()};
+    opacity: 1;
     position: relative;
     transition: top ease-out 0.3s;
     font-family: 'Didact Gothic', sans-serif;
@@ -55,7 +55,7 @@ const GratitudeItems = styled.div`
 `
 
 const GratitudeItem = styled.div`
-    background-color: #ffffff;
+    background-color: rgba(255, 255, 255, 0.8);
     margin: 10px 10px;
     font-size: 2em;
 `

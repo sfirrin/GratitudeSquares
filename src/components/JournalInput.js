@@ -29,11 +29,12 @@ export const GratitudeEntryTitleStyle = css`
 
 const secondaryInputGray = 180
 
-export function getRandomColor() {
+export function getRandomColor(opacity = 1.0) {
     return chroma
         .random()
         .saturate(2)
         .luminance(0.3)
+        .alpha(opacity)
     // .rgba()
 }
 const secondaryInputColor = getRandomColor()
